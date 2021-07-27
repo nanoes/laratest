@@ -28,6 +28,14 @@ class TratamientoController extends Controller
     public function store(Request $request)
     {
         //
+        $obj = new Tratamiento();
+        $obj -> od_id = $request->od_id;
+        $obj -> pa_id = $request->pa_id;
+        $obj -> cant_placas  = $request->cant_placas;
+        $obj -> save();
+        return $obj;
+
+        
     }
 
     /**
@@ -39,6 +47,7 @@ class TratamientoController extends Controller
     public function show($id)
     {
         //
+        return Tratamiento::find($id);
     }
 
     /**
@@ -51,6 +60,12 @@ class TratamientoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $obj =  Tratamiento::find($id);
+        $obj -> od_id = $request->od_id;
+        $obj -> pa_id = $request->pa_id;
+        $obj -> cant_placas = $request->cant_placas;
+        $obj -> ended_at = $request->ended_at;
+        $obj -> save();
     }
 
     /**
@@ -62,5 +77,7 @@ class TratamientoController extends Controller
     public function destroy($id)
     {
         //
+        $obj = Tratamiento::find($id);
+        $obj ->delete();
     }
 }

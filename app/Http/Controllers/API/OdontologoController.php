@@ -28,6 +28,16 @@ class OdontologoController extends Controller
     public function store(Request $request)
     {
         //
+        $obj = new Odontologo();
+
+        $obj->nombre = $request->nombre;
+        $obj->apellido = $request->apellido;
+        //faltan -> la foreign key 
+        //$obj->nombre = $request->nombre;
+
+
+        $obj -> save();
+        return $obj;
     }
 
     /**
@@ -39,6 +49,7 @@ class OdontologoController extends Controller
     public function show($id)
     {
         //
+        return Odontologo::find($id);
     }
 
     /**
@@ -51,6 +62,11 @@ class OdontologoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $obj = Odontologo::find($id);
+        $obj -> nombre = $request->nombre;
+        $obj -> apellido = $request->nombre;
+        $obj -> save();
+
     }
 
     /**
@@ -62,5 +78,7 @@ class OdontologoController extends Controller
     public function destroy($id)
     {
         //
+        $obj = Odontologo::find($id);
+        $obj ->delete();
     }
 }

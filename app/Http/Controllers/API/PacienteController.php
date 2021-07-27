@@ -28,6 +28,12 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         //
+        $obj = new Paciente();
+        $obj->nombre = $request->nombre;
+        $obj->apellido = $request->apellido;
+        
+        $obj -> save();
+        return $obj;
     }
 
     /**
@@ -39,6 +45,7 @@ class PacienteController extends Controller
     public function show($id)
     {
         //
+        return Paciente::find($id);
     }
 
     /**
@@ -51,6 +58,11 @@ class PacienteController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $obj = Paciente::find($id);
+        $obj -> nombre = $request->nombre;
+        $obj -> apellido = $request->nombre;
+        $obj -> save();
+
     }
 
     /**
@@ -62,5 +74,7 @@ class PacienteController extends Controller
     public function destroy($id)
     {
         //
+        $obj = Paciente::find($id);
+        $obj ->delete();
     }
 }
