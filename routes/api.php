@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 //public routes
 
 Route::resource('pacientes', PacienteController::class);
+Route::resource('tratamientos', PacienteController::class);
+Route::resource('odontologos', PacienteController::class);
 
 //protected routes
 Route::middleware('auth:api')->get('/user', function (Request $request) {
