@@ -13,15 +13,42 @@ class TratamientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        //
-        $tratamientos = Tratamiento::orderBy('name')->get();
-        return response()->json([
-            'type' => 'tratamientos',
-            'data' => $tratamientos->toArray()
-        ]);
+        try {
+                $tratamientos = Tratamiento::orderBy('name')->get();
+                return response()->json([
+                    'type' => 'tratamientos',
+                    'data' => $tratamientos->toArray()
+                ]);
+            if(!$tratamientos->isEmpty()) {
+                return response()->json([
+                    'entity' => 'tratamientos',
+                    'action' => 'get',
+                    'result' => 'success',
+                    'data'   => $tratamientos
+                ], 201);
+            }else{
+                return response()->json([
+                    'entity' => 'tratamientos',
+                    'action' => 'get',
+                    'result' => 'failed',
+                    'error' => 'Not found'
+                ], 409);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'entity' => 'datos_societarios',
+                'action' => 'get',
+                'result' => 'failed',
+                'e' => $e
+            ], 409);
+        }
     }
+        //
+    
 
     /**
      * Store a newly created resource in storage.
