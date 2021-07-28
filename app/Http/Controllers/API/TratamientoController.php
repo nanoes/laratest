@@ -16,7 +16,11 @@ class TratamientoController extends Controller
     public function index()
     {
         //
-        return Tratamiento::all();
+        $tratamientos = Tratamiento::orderBy('name')->get();
+        return response()->json([
+            'type' => 'tratamientos',
+            'data' => $tratamientos->toArray()
+        ]);
     }
 
     /**

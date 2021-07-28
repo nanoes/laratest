@@ -15,8 +15,11 @@ class OdontologoController extends Controller
      */
     public function index()
     {
-        //
-        return Odontologo::all();
+        $odontologos = Odontologo::orderBy('name')->get();
+        return response()->json([
+            'type' => 'odontologos',
+            'data' => $odontologos->toArray()
+        ]);
     }
 
     /**

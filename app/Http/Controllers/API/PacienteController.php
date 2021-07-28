@@ -16,7 +16,11 @@ class PacienteController extends Controller
     public function index()
     {
         //
-        return Paciente::all();
+        $pacientes = Paciente::orderBy('name')->get();
+        return response()->json([
+            'type' => 'pacientes',
+            'data' => $pacientes->toArray()
+        ]);
     }
 
     /**
