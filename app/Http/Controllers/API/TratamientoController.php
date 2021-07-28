@@ -40,7 +40,7 @@ class TratamientoController extends Controller
 
         } catch (\Exception $e) {
             return response()->json([
-                'entity' => 'datos_societarios',
+                'entity' => 'tratamientos',
                 'action' => 'get',
                 'result' => 'failed',
                 'e' => $e
