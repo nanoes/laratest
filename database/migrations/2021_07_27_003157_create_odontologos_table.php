@@ -18,6 +18,7 @@ class CreateOdontologosTable extends Migration
             $table->id('id')->unique()->autoIncrement();
             $table->string('nombre',255);
             $table->string('apellido',255);
+            //$table->foreignId('paciente_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
